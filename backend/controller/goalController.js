@@ -1,13 +1,17 @@
 //use npm package 'asyncHandler' replace try(..)catch(..) block 
 const asyncHandler = require('express-async-handler')
 
+const Goal = require('../models/goalModel')
 
 //@controller: get goals
 //@route GET /api/goals
 //@access private
 const getGoals = asyncHandler(async (req, res) => {
+    const goals = await Goal.find()
+
     res.status(200).json({
-        message: `Get Goals`
+        message: `Get Goals`,
+        data: goals
     })
 })
 
